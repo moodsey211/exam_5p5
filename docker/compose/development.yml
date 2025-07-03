@@ -1,0 +1,36 @@
+networks:
+  exam5p5:
+    driver: bridge
+
+services:
+  api:
+    image: node:24.2-bookworm
+    command: bash
+    container_name: wsapp
+    env_file:
+      - ../environments/api
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    user: 1000:1000
+    volumes:
+      - ../../src/api:/src
+    networks:
+      - exam5p5
+
+  ui:
+    image: node:24.2-bookworm
+    command: bash
+    container_name: wsapp
+    env_file:
+      - ../environments/ui
+    ports:
+      - "3001:3001"
+    stdin_open: true
+    user: 1000:1000
+    volumes:
+      - ../../src/ui:/src
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - exam5p5
