@@ -13,8 +13,6 @@ async function seedDatabase() {
     price: order.price,
     qty: order.qty,
   })));
-
-  console.log(records);
 }
 
 seedDatabase();

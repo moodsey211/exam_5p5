@@ -8,7 +8,7 @@ export default async function createOrder(req: Request, res: Response, next: Nex
     logger.info('Creating order');
     const { product, price, qty } = req.body;
     
-    const order = await OrderModel.create({
+    const order: OrderModel = await OrderModel.create({
       product,
       price,
       qty,

@@ -43,8 +43,8 @@ export default async function listOrders(req: Request, res: Response, next: Next
     });
   } catch(error: any) {
     logger.error(error);
-    throw new AppError('Failed to list orders', 'internal-server-error', 500, {
+    next(new AppError('Failed to list orders', 'internal-server-error', 500, {
       error: error,
-    });
+    }));
   } 
 }

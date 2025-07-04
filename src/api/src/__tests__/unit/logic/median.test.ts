@@ -1,4 +1,4 @@
-import median from '../../logic/median';
+import median from '../../../logic/median';
 
 describe('Testing the median function', () => {
   it('should handle empty array', () => {

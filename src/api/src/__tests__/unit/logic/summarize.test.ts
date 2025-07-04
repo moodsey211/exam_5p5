@@ -1,12 +1,12 @@
-import { type Order, type Summary } from '../../types/orders';
-import summarizeOrders from '../../logic/summarize';
-import { generateFakeOrders, generateTestOrders } from '../helpers/fakeOrders';
+import { type Order, type Summary } from '../../../types/orders';
+import summarizeOrders from '../../../logic/summarize';
+import { generateFakeOrders, generateTestOrders } from '../../helpers/fakeOrders';
 import { 
   generateRealisticOrders, 
   generatePatternOrders, 
   generateStressTestData,
   generateEdgeCaseOrders 
-} from '../helpers/advancedFakeOrders';
+} from '../../helpers/advancedFakeOrders';
 
 describe('Testing the sumarize function', () => {
   it('should handle empty orders', () => {

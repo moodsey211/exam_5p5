@@ -1,4 +1,4 @@
-import express, { Request, Response, NextFunction } from 'express';
+import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
@@ -6,9 +6,10 @@ import { errorHandler } from './middleware/errorHandler';
 import { connectToDatabase } from './utils/database';
 import commonRoutes from './routes/common/routes';
 import ordersRoutes from './routes/orders/routes';
+import { logger } from './utils/logger';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env['PORT'] || 3000;
 
 app.use(helmet());
 app.use(cors());
@@ -27,7 +28,7 @@ async function startServer() {
       
       await app.listen(PORT, () => {
         console.log(`🚀 Server is running on port ${PORT}`);
-        console.log(`📝 Environment: ${process.env.NODE_ENV || 'development'}`);
+        console.log(`📝 Environment: ${process.env['NODE_ENV'] || 'development'}`);
       });
     } catch (error) {
       logger.error('Failed to start server:', error);
@@ -35,6 +36,9 @@ async function startServer() {
     }
 }
 
-startServer();
+// Only start server if not in test environment
+//if (process.env['NODE_ENV'] !== 'test') {
+  startServer();
+//}
 
 export default app;

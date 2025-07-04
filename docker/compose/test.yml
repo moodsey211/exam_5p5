@@ -1,0 +1,13 @@
+services:
+  api:
+    image: node:24.2-bookworm
+    command: bash
+    container_name: wsapp
+    env_file:
+      - ../environments/test
+    ports:
+      - "3000:3000"
+    user: 1000:1000
+    volumes:
+      - ../../src/api:/src
+    network_mode: host

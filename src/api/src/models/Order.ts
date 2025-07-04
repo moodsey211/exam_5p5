@@ -1,7 +1,14 @@
-import { DataTypes } from 'sequelize';
+import { DataTypes,Model, InferAttributes, InferCreationAttributes, CreationOptional } from 'sequelize';
 import { sequelize } from '../utils/database';
 
-const Order = sequelize.define('Order', {
+class Order extends Model<InferAttributes<Order>, InferCreationAttributes<Order>> {
+  declare id: CreationOptional<number>;
+  declare product: string;
+  declare price: number;
+  declare qty: number;
+};
+
+Order.init({
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -20,7 +27,9 @@ const Order = sequelize.define('Order', {
     allowNull: false,
   },
 }, {
-  timestamps: true
+  timestamps: true,
+  tableName: 'orders',
+  sequelize,
 });
 
 export default Order;

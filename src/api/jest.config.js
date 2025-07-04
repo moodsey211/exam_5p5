@@ -17,4 +17,12 @@ module.exports = {
   coverageReporters: ['text', 'lcov', 'html'],
   setupFilesAfterEnv: ['<rootDir>/src/__tests__/setup.ts'],
   testTimeout: 10000,
+  // Force exit to prevent open handles
+  forceExit: true,
+  // Clear mocks between tests
+  clearMocks: true,
+  // Reset modules between tests
+  resetModules: true,
+  // Restore mocks between tests
+  restoreMocks: true,
 }; 

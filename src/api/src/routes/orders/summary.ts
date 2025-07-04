@@ -5,7 +5,7 @@ import { logger } from '../../utils/logger';
 import OrderModel from '../../models/Order';
 import { AppError } from '../../middleware/errorHandler';
 
-export default async function getSummary(req: Request, res: Response, next: NextFunction) {
+export default async function getSummary(_req: Request, res: Response, next: NextFunction) {
   try {
     logger.info('Getting summary of orders');
     

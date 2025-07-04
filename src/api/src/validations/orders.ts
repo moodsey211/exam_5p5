@@ -1,4 +1,4 @@
-import { body } from 'express-validator';
+import { body, query } from 'express-validator';
 
 export const createValidation = [
   body('product')
@@ -21,3 +21,15 @@ export const createValidation = [
     .withMessage('Quantity must be an integer'),
 ];
 
+export const listValidation = [
+  query('limit')
+    .optional()
+    .trim()
+    .isInt()
+    .withMessage('Limit must be an integer'),
+  query('offset')
+    .optional()
+    .trim()
+    .isInt()
+    .withMessage('Offset must be an integer'),
+];

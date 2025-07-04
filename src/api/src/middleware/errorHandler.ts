@@ -1,7 +1,11 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response } from 'express';
 import { logger } from '../utils/logger';
 
 export class AppError extends Error {
+  public statusCode: number;
+  public status: string;
+  public detail: any;
+
   constructor(message: string, code: string, statusCode: number, detail: any) {
     super(message);
     this.statusCode = statusCode;
@@ -12,7 +16,7 @@ export class AppError extends Error {
   }
 }
 
-export const errorHandler = (err: any, req: Request, res: Response, next: NextFunction) => {
+export const errorHandler = (err: any, req: Request, res: Response) => {
   err.statusCode = err?.statusCode || 500;
   err.status = err?.status || 'error';
 
@@ -23,7 +27,7 @@ export const errorHandler = (err: any, req: Request, res: Response, next: NextFu
     statusCode: err.statusCode,
     path: req.path,
     method: req.method,
-    requestId: req.id,
+    requestId: (req as any).id,
   });
 
   if (process.env['NODE_ENV'] === 'development') {
