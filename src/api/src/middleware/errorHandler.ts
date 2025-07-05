@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { logger } from '../utils/logger';
 
 export class AppError extends Error {
@@ -16,7 +16,7 @@ export class AppError extends Error {
   }
 }
 
-export const errorHandler = (err: any, req: Request, res: Response) => {
+export const errorHandler = (err: AppError, req: Request, res: Response, _next: NextFunction) => {
   err.statusCode = err?.statusCode || 500;
   err.status = err?.status || 'error';
 
@@ -29,6 +29,8 @@ export const errorHandler = (err: any, req: Request, res: Response) => {
     method: req.method,
     requestId: (req as any).id,
   });
+
+  console.log(process.env['NODE_ENV']);
 
   if (process.env['NODE_ENV'] === 'development') {
     res.status(err.statusCode).json({

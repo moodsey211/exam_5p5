@@ -1,0 +1,6 @@
+NODE_ENV=development
+PORT=3001
+WATCHPACK_POLLING=true
+CHOKIDAR_USEPOLLING=true
+NODE_OPTIONS=--openssl-legacy-provider
+VITE_API_URL=http://host.docker.internal:3000/api/

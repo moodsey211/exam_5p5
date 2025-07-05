@@ -20,6 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api', ordersRoutes);
 app.use('/api', commonRoutes);
 
+// Error handler should be registered after all routes
 app.use(errorHandler);
 
 async function startServer() {
